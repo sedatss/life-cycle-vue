@@ -1,27 +1,62 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="container">
+    <div v-if="showMount">
+      <LifeCycle></LifeCycle>
+    </div>
+    <div>
+      <button @click.prevent="toggleMount">Toggle mount</button>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import { defineComponent, ref } from 'vue';
+import LifeCycle from './components/LifeCycle.vue';
 
 export default defineComponent({
-  name: 'App',
   components: {
-    HelloWorld
-  }
+    LifeCycle,
+  },
+  setup() {
+    const showMount = ref(true);
+
+    const toggleMount = () => {
+      showMount.value = !showMount.value;
+    };
+
+    return {
+      showMount,
+      toggleMount,
+    };
+  },
 });
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+<style scoped>
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
+
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
 </style>
