@@ -11,44 +11,50 @@ import { ref, onMounted, onBeforeUpdate, onUpdated, onUnmounted, onBeforeMount, 
 
 const count = ref<number>(0)
 
+onBeforeMount(function (): void {
+  console.log('before Mount');
+});
+
+onMounted(function (): void {
+  console.log('Component mounted');
+});
+
+onBeforeUpdate(function (): void {
+  console.log('Before update (count =', count.value, ')');
+});
+
+onUpdated(function (): void {
+  console.log('Component updated (count =', count.value, ')');
+});
+
+onBeforeUnmount(function (): void {
+  console.log('beforeUnmount');
+});
+
+onUnmounted(function (): void {
+  console.log('Component unmounted');
+});
+
 function increment(): void {
   count.value++
 }
 
-onBeforeMount(() => {
-  console.log('before Mount')
-})
-
-onMounted(() => {
-  console.log('Component mounted')
-})
-
-onBeforeUpdate(() => {
-  console.log('Before update (count =', count.value, ')')
-})
-
-onUpdated(() => {
-  console.log('Component updated (count =', count.value, ')')
-})
-
-onBeforeUnmount(() => {
-  console.log('beforeUnmount')
-})
-
-onUnmounted(() => {
-  console.log('Component unmounted')
-})
 </script>
 
 <style scoped>
 
 .container {
+  width: 100%;
+  max-width: 500px;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 50vh;
-  text-align: center;
+  gap: 1.5rem;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
 }
 
 h1 {

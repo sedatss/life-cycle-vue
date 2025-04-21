@@ -20,9 +20,9 @@ export default defineComponent({
   setup() {
     const showMount = ref(true);
 
-    const toggleMount = () => {
+    function toggleMount(): void {
       showMount.value = !showMount.value;
-    };
+    }
 
     return {
       showMount,
@@ -32,7 +32,15 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style>
+
+body {
+  height: 100%;
+  margin: 100px;
+  padding: 0;
+  background-color: #fdf6ec;
+}
+
 
 .container {
   display: flex;
